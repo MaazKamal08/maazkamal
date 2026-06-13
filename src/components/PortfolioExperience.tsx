@@ -28,10 +28,12 @@ import * as THREE from "three";
 import {
   certifications,
   experiences,
+  operatingSignals,
   profile,
   projects,
   repoHighlights,
   roadmap,
+  serviceTracks,
   skillGroups,
   story
 } from "@/data/portfolio";
@@ -41,6 +43,7 @@ type Theme = "dark" | "light";
 
 const publicBasePath = process.env.NEXT_PUBLIC_REPOSITORY_NAME ? `/${process.env.NEXT_PUBLIC_REPOSITORY_NAME}` : "";
 const publicAsset = (path: string) => `${publicBasePath}${path}`;
+const navItems = ["services", "skills", "projects", "github", "experience", "systems-lab", "contact"];
 
 function SignalField() {
   const points = useRef<THREE.Points>(null);
@@ -221,8 +224,20 @@ export function PortfolioExperience() {
   const [commandOpen, setCommandOpen] = useState(false);
   const [assistantOpen, setAssistantOpen] = useState(false);
   const [assistantQuery, setAssistantQuery] = useState("What makes Maaz different?");
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState("top");
   const rootRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
+  const sectionLabels: Record<string, string> = {
+    top: "Hero",
+    services: "Services",
+    skills: "Skills",
+    projects: "Projects",
+    github: "GitHub",
+    experience: "Experience",
+    "systems-lab": "Systems lab",
+    contact: "Contact"
+  };
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -244,6 +259,29 @@ export function PortfolioExperience() {
     if (!rootRef.current || reducedMotion) return;
     gsap.fromTo(".metric-card", { y: 18, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, duration: 0.7, ease: "power3.out" });
   }, [reducedMotion]);
+
+  useEffect(() => {
+    const trackedSections = ["top", ...navItems];
+
+    const onScroll = () => {
+      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(documentHeight > 0 ? Math.min(100, (window.scrollY / documentHeight) * 100) : 0);
+
+      const current = trackedSections
+        .map((id) => ({ id, top: document.getElementById(id)?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY }))
+        .filter((item) => item.top < window.innerHeight * 0.42)
+        .sort((a, b) => b.top - a.top)[0]?.id;
+      if (current) setActiveSection(current);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
 
   const filteredProjects = projects.filter((project) => {
     const haystack = `${project.title} ${project.category} ${project.problem} ${project.stack.join(" ")}`.toLowerCase();
@@ -269,21 +307,20 @@ export function PortfolioExperience() {
     recognition.lang = "en-US";
     recognition.onresult = (event: any) => {
       const phrase = event.results[0][0].transcript.toLowerCase();
-      const target = ["projects", "skills", "github", "experience", "systems-lab", "contact"].find((id) => phrase.includes(id) || phrase.includes(id.replace("-", " ")));
+      const target = navItems.find((id) => phrase.includes(id) || phrase.includes(id.replace("-", " ")));
       if (target) document.getElementById(target)?.scrollIntoView({ behavior: "smooth" });
     };
     recognition.start();
   };
 
-  const navItems = ["skills", "projects", "github", "experience", "systems-lab", "contact"];
-
   return (
     <main ref={rootRef} className="site-shell">
+      <div className="scroll-progress" style={{ transform: `scaleX(${scrollProgress / 100})` }} />
       <div className="background-grid" />
       <nav className="top-nav" aria-label="Primary navigation">
         <a href="#top" className="brand"><ShieldCheck size={18} /> MMK</a>
         <div className="nav-links">
-          {navItems.map((item) => <a key={item} href={`#${item}`}>{item.replace("-", " ")}</a>)}
+          {navItems.map((item) => <a key={item} className={activeSection === item ? "active" : ""} href={`#${item}`}>{item.replace("-", " ")}</a>)}
         </div>
         <div className="nav-actions">
           <button aria-label="Open command palette" className="icon-btn" onClick={() => setCommandOpen(true)}><Command size={18} /></button>
@@ -301,7 +338,7 @@ export function PortfolioExperience() {
               <span>Operating as</span>
               <div className="role-window">
                 <div className="role-stack">
-                  {profile.roles.map((role) => <strong key={role}>{role}</strong>)}
+                  {profile.roles.map((role) => <strong className={role.length > 28 ? "long-role" : undefined} key={role}>{role}</strong>)}
                 </div>
               </div>
             </div>
@@ -349,6 +386,44 @@ export function PortfolioExperience() {
           <h2>Need an AI workflow, SOC automation, RAG system, or client ops engine built properly?</h2>
         </div>
         <a className="primary-btn" href={profile.consultationForm} target="_blank" rel="noreferrer">Book your service <ArrowRight size={18} /></a>
+      </section>
+
+      <section id="services" className="section services-section">
+        <div className="section-head">
+          <div>
+            <p className="eyebrow">Service operating system</p>
+            <h2>Four ways Maaz turns AI and security into deployed systems.</h2>
+          </div>
+          <div className="section-kpi">
+            <strong>{Math.round(scrollProgress)}%</strong>
+            <span>portfolio scanned</span>
+          </div>
+        </div>
+        <div className="signal-grid">
+          {operatingSignals.map((signal) => (
+            <article className="signal-card" key={signal.label}>
+              <strong>{signal.metric}</strong>
+              <h3>{signal.label}</h3>
+              <p>{signal.detail}</p>
+            </article>
+          ))}
+        </div>
+        <div className="service-grid">
+          {serviceTracks.map((track) => (
+            <article className="service-card" key={track.title}>
+              <div className="service-card-top">
+                <span>{track.label}</span>
+                <Sparkles size={18} />
+              </div>
+              <h3>{track.title}</h3>
+              <p>{track.description}</p>
+              <ul>
+                {track.outcomes.map((outcome) => <li key={outcome}><Check size={15} />{outcome}</li>)}
+              </ul>
+              <div className="tag-row">{track.stack.map((item) => <span key={item}>{item}</span>)}</div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section id="about" className="section story-section">
@@ -508,6 +583,11 @@ export function PortfolioExperience() {
       </section>
 
       <button className="assistant-launcher" onClick={() => setAssistantOpen(true)} aria-label="Open service guide"><Bot size={22} /></button>
+      <aside className="smart-hud" aria-label="Portfolio navigation status">
+        <span>Current section</span>
+        <strong>{sectionLabels[activeSection] ?? activeSection}</strong>
+        <div><i style={{ width: `${scrollProgress}%` }} /></div>
+      </aside>
       {assistantOpen && (
         <div className="assistant-panel" role="dialog" aria-label="Portfolio service guide">
           <div><strong>Service guide</strong><button onClick={() => setAssistantOpen(false)}>Close</button></div>

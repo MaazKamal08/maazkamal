@@ -39,17 +39,31 @@ export type Certification = {
   detail: string;
 };
 
+export type ServiceTrack = {
+  title: string;
+  label: string;
+  description: string;
+  outcomes: string[];
+  stack: string[];
+};
+
+export type OperatingSignal = {
+  metric: string;
+  label: string;
+  detail: string;
+};
+
 export const profile = {
   name: "Muhammad Maaz Kamal",
   headline: "AI engineer and security engineer building production automation systems.",
   location: "Karachi, Pakistan",
-  availability: "Immediate availability · Remote globally · Hybrid Karachi",
+  availability: "Immediate availability - Remote globally - Hybrid Karachi",
   email: "muhammadmaazkamal@gmail.com",
   phone: "+92 336 3119749",
   github: "https://github.com/MaazKamal08",
   linkedin: "https://www.linkedin.com/in/mmaazkamal",
   consultationForm: "https://docs.google.com/forms/d/e/1FAIpQLSf_K4bYCqcZMBx_YnN5nyu0eernOVVZEDTGos8MoEngNgNq7w/viewform",
-  roles: ["AI Engineer", "Cybersecurity Engineer", "SOC Analyst", "Automation Engineer", "Full Stack AI Engineer"],
+  roles: ["Full Stack AI Engineer", "Senior Information Security Analyst", "AI/Automation Engineer", "Cybersecurity Engineer"],
   proof: [
     { label: "AI engineering", value: "4+ yrs" },
     { label: "SOC operations", value: "4+ yrs" },
@@ -63,6 +77,60 @@ export const story = [
   "On the AI side, he has 4+ years building production LLM chatbots, RAG knowledge bases, LangChain/LangGraph workflows, client automations, CRM systems, WhatsApp agents, and AI-powered business tools for NJ Marketing Group clients.",
   "On the security side, he progressed into SOC L2/L3 and SOC leadership, owning incident response, SIEM tuning, EDR/XDR operations, SOAR workflows, phishing simulations, awareness campaigns, endpoint containment, and compliance programs.",
   "His leadership layer ties both worlds together: Team Lead for AI, Automation & Engineering at NJ Marketing Group, and AI Security Engineer / SOC Lead at Keenu.pk, translating technical systems into client outcomes, analyst efficiency, and measurable business value."
+];
+
+export const operatingSignals: OperatingSignal[] = [
+  {
+    metric: "AI",
+    label: "Product engineering",
+    detail: "RAG, LangGraph agents, CRM automation, WhatsApp assistants, and full-stack AI tools shipped for client operations."
+  },
+  {
+    metric: "SOC",
+    label: "Cyber defense",
+    detail: "L2/L3 alert triage, EDR/XDR response, SOAR playbooks, phishing simulation, and compliance-ready reporting."
+  },
+  {
+    metric: "LEAD",
+    label: "Team execution",
+    detail: "AI engineers, developers, SOC analysts, client discovery, delivery standards, escalation handling, and production readiness."
+  },
+  {
+    metric: "OPS",
+    label: "Automation ROI",
+    detail: "n8n, Make.com, GoHighLevel, Zapier, FastAPI, and cloud workflows that replace repeated manual work with logged systems."
+  }
+];
+
+export const serviceTracks: ServiceTrack[] = [
+  {
+    title: "Full Stack AI Engineering",
+    label: "Build",
+    description: "Production AI apps, RAG platforms, agent workflows, internal tools, APIs, and dashboards that move from prototype to client-ready delivery.",
+    outcomes: ["RAG and knowledge assistants", "LangGraph/LangChain workflows", "FastAPI + React/Next interfaces"],
+    stack: ["OpenAI", "LangGraph", "LangSmith", "Pydantic", "FastAPI", "Next.js"]
+  },
+  {
+    title: "Security Automation & SOC AI",
+    label: "Defend",
+    description: "SOC triage, phishing intelligence, firewall response, SOAR, EDR/XDR enrichment, and alert workflows that keep analysts focused on decisions.",
+    outcomes: ["Automated IOC enrichment", "SOAR response pipelines", "Audit-ready incident summaries"],
+    stack: ["Wazuh", "EDR/XDR", "n8n", "VirusTotal", "pfSense", "MITRE ATT&CK"]
+  },
+  {
+    title: "Client Automation Systems",
+    label: "Scale",
+    description: "Business automation for marketing, CRM, SEO, lead routing, WhatsApp, reporting, and operations teams that need repeatable delivery speed.",
+    outcomes: ["GoHighLevel automations", "Make.com/Zapier workflows", "Bulk SEO and content pipelines"],
+    stack: ["GoHighLevel", "Make.com", "Zapier", "WooCommerce", "Google Sheets", "n8n"]
+  },
+  {
+    title: "AI + SOC Leadership",
+    label: "Lead",
+    description: "Technical leadership across AI engineering teams and SOC operations, translating complex systems into accountable work, standards, and outcomes.",
+    outcomes: ["Team operating rhythms", "Architecture reviews", "Client discovery and escalation"],
+    stack: ["Delivery standards", "Code review", "SOC playbooks", "Compliance", "Client success"]
+  }
 ];
 
 export const skillGroups: SkillGroup[] = [
@@ -138,7 +206,7 @@ export const projects: Project[] = [
   {
     title: "SmartPhish",
     category: "AI Security",
-    status: "Private · Production",
+    status: "Private - Production",
     problem: "Organizations need phishing defense that measures human risk, detects malicious intent, and closes awareness gaps with evidence.",
     impact: "Deployed internally at Keenu.pk for organization-wide simulation, susceptibility scoring, and compliance-ready awareness reporting.",
     architecture: ["Email + URL analysis", "ML classification", "Simulation engine", "HR/compliance reporting", "Training assignment"],
@@ -174,7 +242,7 @@ export const projects: Project[] = [
   {
     title: "FirewallAI",
     category: "Security Automation",
-    status: "Private · Prototype/Production path",
+    status: "Private - Prototype/Production path",
     problem: "Firewall rule management is slow, error-prone, and difficult to validate at incident speed.",
     impact: "Generates and validates context-aware firewall rules from threat evidence before applying them through controlled automation.",
     architecture: ["Threat context", "Policy reasoning", "Rule draft", "Validation checks", "Firewall application"],
@@ -214,7 +282,7 @@ export const experiences: Experience[] = [
     role: "Team Lead - AI, Automation & Engineering",
     company: "NJ Marketing Group Inc",
     period: "Jan 2025 - Present",
-    location: "Mississauga, Canada · Remote",
+    location: "Mississauga, Canada - Remote",
     focus: "Front-facing technical authority leading AI, automation, engineering delivery, and client solution architecture.",
     wins: ["Owns 10+ simultaneous client projects", "Leads AI engineers and developers", "Runs discovery, scope, delivery standards, and client escalation", "Ships LLM chatbots, RAG systems, CRM automations, GoHighLevel flows, Make.com/Zapier automations, and n8n workflows"]
   },
@@ -222,7 +290,7 @@ export const experiences: Experience[] = [
     role: "AI Security Engineer & SOC Lead",
     company: "Keenu.pk",
     period: "Oct 2024 - Present",
-    location: "Karachi · On-site",
+    location: "Karachi - On-site",
     focus: "Leads 24/7 SOC operations while building AI-assisted threat response systems.",
     wins: ["Reduced MTTD by 35%", "Built sub-90-second IP blocking", "Leads SOC L1/L2 analysts and AI-assisted triage", "Runs phishing simulations, awareness workflows, EDR/DLP operations, and PCI DSS / ISO 27001 programs"]
   },
@@ -238,7 +306,7 @@ export const experiences: Experience[] = [
     role: "Information Security Analyst",
     company: "CommTel",
     period: "Jan 2023 - Sep 2024",
-    location: "Karachi · On-site",
+    location: "Karachi - On-site",
     focus: "L2 SOC operations, SIEM tuning, incident response, vulnerability management, and compliance.",
     wins: ["Reduced false positives 25%", "Authored 8 IR playbooks", "Cut containment from 4 hours to 90 minutes"]
   },
