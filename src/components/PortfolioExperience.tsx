@@ -39,6 +39,9 @@ import { fallbackRepos, type RepoSnapshot } from "@/data/githubRepos";
 
 type Theme = "dark" | "light";
 
+const publicBasePath = process.env.NEXT_PUBLIC_REPOSITORY_NAME ? `/${process.env.NEXT_PUBLIC_REPOSITORY_NAME}` : "";
+const publicAsset = (path: string) => `${publicBasePath}${path}`;
+
 function SignalField() {
   const points = useRef<THREE.Points>(null);
   const particles = useMemo(() => {
@@ -311,15 +314,15 @@ export function PortfolioExperience() {
           <div className="hero-actions">
             <a className="primary-btn" href={profile.consultationForm} target="_blank" rel="noreferrer">Get consultation <ArrowRight size={18} /></a>
             <a className="secondary-btn" href="#projects">View case studies <ArrowRight size={18} /></a>
-            <a className="secondary-btn" href="/Maaz_Kamal_AI_Automation_Resume.pdf" download>AI resume <Download size={18} /></a>
-            <a className="secondary-btn" href="/Maaz_Kamal_Security_Resume.pdf" download>Security resume <Download size={18} /></a>
+            <a className="secondary-btn" href={publicAsset("/Maaz_Kamal_AI_Automation_Resume.pdf")} download>AI resume <Download size={18} /></a>
+            <a className="secondary-btn" href={publicAsset("/Maaz_Kamal_Security_Resume.pdf")} download>Security resume <Download size={18} /></a>
           </div>
           <div className="availability"><span /> {profile.availability}</div>
         </div>
         <div className="hero-visual" aria-label="Muhammad Maaz Kamal profile and security operations signal panel">
           {!reducedMotion ? <Canvas camera={{ position: [0, 0, 4], fov: 50 }}><SignalField /></Canvas> : <div className="static-field" />}
           <div className="profile-frame">
-            <img src="/maaz-profile.jfif" alt="Muhammad Maaz Kamal" />
+            <img src={publicAsset("/maaz-profile.jfif")} alt="Muhammad Maaz Kamal" />
             <div className="profile-caption">
               <strong>SOC L3 / AI Security</strong>
               <span>Karachi · Remote global</span>
