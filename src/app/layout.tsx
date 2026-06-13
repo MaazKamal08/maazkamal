@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     "AI Engineer",
     "Cybersecurity Engineer",
     "SOC Analyst",
-    "Full Stack Developer",
+    "Full Stack AI Engineer",
     "GenAI Engineer",
     "Agentic AI Engineer",
     "Security Automation",

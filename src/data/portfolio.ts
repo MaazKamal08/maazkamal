@@ -41,7 +41,7 @@ export type Certification = {
 
 export const profile = {
   name: "Muhammad Maaz Kamal",
-  headline: "Security automation engineer building production cyber defense systems.",
+  headline: "AI engineer and security engineer building production automation systems.",
   location: "Karachi, Pakistan",
   availability: "Immediate availability · Remote globally · Hybrid Karachi",
   email: "muhammadmaazkamal@gmail.com",
@@ -49,20 +49,20 @@ export const profile = {
   github: "https://github.com/MaazKamal08",
   linkedin: "https://www.linkedin.com/in/mmaazkamal",
   consultationForm: "https://docs.google.com/forms/d/e/1FAIpQLSf_K4bYCqcZMBx_YnN5nyu0eernOVVZEDTGos8MoEngNgNq7w/viewform",
-  roles: ["AI Engineer", "Cybersecurity Engineer", "SOC Analyst", "Automation Engineer", "Full Stack Developer"],
+  roles: ["AI Engineer", "Cybersecurity Engineer", "SOC Analyst", "Automation Engineer", "Full Stack AI Engineer"],
   proof: [
+    { label: "AI engineering", value: "4+ yrs" },
     { label: "SOC operations", value: "4+ yrs" },
     { label: "Client AI projects", value: "10+" },
-    { label: "MTTD reduction", value: "35%" },
-    { label: "Auto-block cycle", value: "<90s" }
+    { label: "Leadership roles", value: "2" }
   ]
 };
 
 export const story = [
-  "Maaz operates at the rare intersection of SOC engineering and AI automation: he does not just monitor threats, he builds systems that enrich, decide, and respond before manual queues become bottlenecks.",
-  "His cybersecurity path moved from SOC training into L2 and L3 operations, where he led incident response, SIEM tuning, endpoint containment, compliance programs, and executive security reporting across enterprise environments.",
-  "In parallel, he built production AI systems for NJ Marketing Group clients: LLM chatbots, RAG knowledge bases, n8n workflow engines, WhatsApp agents, SEO automation, and agentic business systems across Canada, the UK, and Pakistan.",
-  "The next chapter is AI-native cyber defense: trustworthy agents, auditable automations, security-aware RAG, and cloud-deployed systems that compress detection, enrichment, containment, and reporting into minutes."
+  "Maaz operates across two equal pillars: AI engineering for products, agents, and automation; and cybersecurity engineering for detection, response, compliance, and resilient operations.",
+  "On the AI side, he has 4+ years building production LLM chatbots, RAG knowledge bases, LangChain/LangGraph workflows, client automations, CRM systems, WhatsApp agents, and AI-powered business tools for NJ Marketing Group clients.",
+  "On the security side, he progressed into SOC L2/L3 and SOC leadership, owning incident response, SIEM tuning, EDR/XDR operations, SOAR workflows, phishing simulations, awareness campaigns, endpoint containment, and compliance programs.",
+  "His leadership layer ties both worlds together: Team Lead for AI, Automation & Engineering at NJ Marketing Group, and AI Security Engineer / SOC Lead at Keenu.pk, translating technical systems into client outcomes, analyst efficiency, and measurable business value."
 ];
 
 export const skillGroups: SkillGroup[] = [
@@ -71,7 +71,11 @@ export const skillGroups: SkillGroup[] = [
     score: 94,
     skills: [
       { name: "SIEM", value: 95, proof: "Wazuh, IBM QRadar, LogRhythm, Sentinel" },
+      { name: "EDR / XDR", value: 90, proof: "Kaspersky EDR, Trend Micro, Defender ATP, endpoint containment" },
       { name: "Incident Response", value: 92, proof: "NIST IR playbooks, L2/L3 escalation" },
+      { name: "SOAR", value: 88, proof: "n8n playbooks, alert enrichment, Jira/Chat routing, auto-blocking" },
+      { name: "Phishing Simulation", value: 92, proof: "SmartPhish campaigns, click/report scoring, targeted training" },
+      { name: "Phishing Awareness", value: 90, proof: "Proofpoint awareness, susceptibility scoring, compliance reporting" },
       { name: "Threat Hunting", value: 88, proof: "IOC enrichment, MITRE ATT&CK mapping" },
       { name: "Compliance", value: 90, proof: "PCI DSS, ISO/IEC 27001:2022" },
       { name: "Endpoint / DLP", value: 86, proof: "Kaspersky EDR, Zecurion DLP, Trend Micro" }
@@ -79,35 +83,53 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     label: "AI Engineering",
-    score: 91,
+    score: 94,
     skills: [
-      { name: "LangChain", value: 90, proof: "Agentic workflows and production RAG" },
-      { name: "RAG", value: 92, proof: "Pinecone, Chroma, FAISS, pgvector" },
+      { name: "LangChain", value: 92, proof: "Agentic workflows and production RAG" },
+      { name: "LangGraph", value: 88, proof: "Multi-step agents, tool routing, stateful workflows" },
+      { name: "LangSmith", value: 82, proof: "Tracing, evaluation, debugging, prompt iteration" },
+      { name: "RAG", value: 93, proof: "Pinecone, Chroma, FAISS, pgvector" },
       { name: "LLM Apps", value: 90, proof: "OpenAI, Anthropic, Gemini APIs" },
+      { name: "Pydantic", value: 84, proof: "Typed agent outputs, validation, tool schemas" },
       { name: "Fine-tuning", value: 80, proof: "LoRA, QLoRA, PEFT" },
-      { name: "Evaluation", value: 82, proof: "Prompt and hallucination reduction loops" }
+      { name: "Evaluation", value: 84, proof: "Prompt, retrieval, and hallucination reduction loops" }
     ]
   },
   {
-    label: "Development",
-    score: 88,
+    label: "Full Stack AI",
+    score: 89,
     skills: [
       { name: "Python", value: 94, proof: "Security automation, APIs, ML pipelines" },
-      { name: "FastAPI", value: 84, proof: "Model serving and internal tools" },
-      { name: "React / Next", value: 80, proof: "Full-stack interfaces and AI dashboards" },
-      { name: "APIs", value: 92, proof: "REST, webhooks, third-party integrations" },
-      { name: "SQL", value: 76, proof: "Data pipelines and operational systems" }
+      { name: "FastAPI", value: 86, proof: "Model serving, webhook APIs, internal tools" },
+      { name: "React / Next", value: 82, proof: "Dashboards, client portals, AI interfaces" },
+      { name: "Pydantic", value: 84, proof: "Structured APIs, validation, AI output contracts" },
+      { name: "Node.js", value: 78, proof: "Automation backends and integrations" },
+      { name: "SQL", value: 78, proof: "Data pipelines and operational systems" }
     ]
   },
   {
     label: "Cloud & Automation",
-    score: 90,
+    score: 93,
     skills: [
       { name: "n8n", value: 98, proof: "SOC, CRM, SEO, WhatsApp, reporting workflows" },
+      { name: "Make.com", value: 88, proof: "Client automation and multi-app orchestration" },
+      { name: "GoHighLevel", value: 86, proof: "CRM, lead routing, marketing automation" },
+      { name: "Zapier", value: 82, proof: "SaaS workflow integration and handoff automation" },
       { name: "AWS", value: 82, proof: "Lambda, EC2, S3, SageMaker basics" },
       { name: "Docker", value: 86, proof: "FastAPI and ML deployment" },
-      { name: "Linux / Windows", value: 88, proof: "SCA automation, server operations" },
-      { name: "Firewalls", value: 91, proof: "pfSense, Sophos, rule automation" }
+      { name: "Linux / Windows", value: 88, proof: "SCA automation, server operations" }
+    ]
+  },
+  {
+    label: "Leadership & Delivery",
+    score: 92,
+    skills: [
+      { name: "Team Leadership", value: 94, proof: "Leads AI engineers, developers, and delivery standards" },
+      { name: "Client Discovery", value: 91, proof: "Requirements, scope, architecture, and stakeholder translation" },
+      { name: "Solution Architecture", value: 90, proof: "RAG, agents, SOC automations, CRM/SEO workflows" },
+      { name: "Project Delivery", value: 90, proof: "10+ simultaneous client projects across NJ Marketing Group" },
+      { name: "Code Review", value: 84, proof: "Architecture review, quality control, production readiness" },
+      { name: "Client Success", value: 86, proof: "Front-facing delivery, escalation handling, upsell discovery" }
     ]
   }
 ];
@@ -193,8 +215,8 @@ export const experiences: Experience[] = [
     company: "NJ Marketing Group Inc",
     period: "Jan 2025 - Present",
     location: "Mississauga, Canada · Remote",
-    focus: "Front-facing technical authority leading AI, automation, and engineering delivery.",
-    wins: ["Owns 10+ simultaneous client projects", "Leads AI engineers and developers", "Ships LLM chatbots, RAG systems, and n8n workflows"]
+    focus: "Front-facing technical authority leading AI, automation, engineering delivery, and client solution architecture.",
+    wins: ["Owns 10+ simultaneous client projects", "Leads AI engineers and developers", "Runs discovery, scope, delivery standards, and client escalation", "Ships LLM chatbots, RAG systems, CRM automations, GoHighLevel flows, Make.com/Zapier automations, and n8n workflows"]
   },
   {
     role: "AI Security Engineer & SOC Lead",
@@ -202,7 +224,7 @@ export const experiences: Experience[] = [
     period: "Oct 2024 - Present",
     location: "Karachi · On-site",
     focus: "Leads 24/7 SOC operations while building AI-assisted threat response systems.",
-    wins: ["Reduced MTTD by 35%", "Built sub-90-second IP blocking", "Achieved PCI DSS and ISO/IEC 27001:2022 programs"]
+    wins: ["Reduced MTTD by 35%", "Built sub-90-second IP blocking", "Leads SOC L1/L2 analysts and AI-assisted triage", "Runs phishing simulations, awareness workflows, EDR/DLP operations, and PCI DSS / ISO 27001 programs"]
   },
   {
     role: "AI/ML Engineer",

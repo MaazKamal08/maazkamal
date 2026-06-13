@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 import gsap from "gsap";
 import {
   ArrowRight,
@@ -216,7 +216,6 @@ function RepoIntelligence({ query }: { query: string }) {
 }
 
 export function PortfolioExperience() {
-  const [roleIndex, setRoleIndex] = useState(0);
   const [theme, setTheme] = useState<Theme>("dark");
   const [search, setSearch] = useState("");
   const [commandOpen, setCommandOpen] = useState(false);
@@ -224,11 +223,6 @@ export function PortfolioExperience() {
   const [assistantQuery, setAssistantQuery] = useState("What makes Maaz different?");
   const rootRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
-
-  useEffect(() => {
-    const interval = window.setInterval(() => setRoleIndex((value) => (value + 1) % profile.roles.length), 1700);
-    return () => window.clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -258,10 +252,10 @@ export function PortfolioExperience() {
 
   const assistantAnswer = useMemo(() => {
     const q = assistantQuery.toLowerCase();
-    if (q.includes("project")) return "Start with SmartPhish, the sub-90-second IP blocking pipeline, and Enterprise RAG systems. Together they show product thinking, security depth, and production AI delivery.";
-    if (q.includes("hire") || q.includes("different")) return "Maaz combines SOC L3 operations, AI engineering, n8n automation, compliance execution, and client-facing leadership. That mix is rare because it connects real threats to shipped AI systems.";
+    if (q.includes("project")) return "Start with Enterprise RAG systems, SmartPhish, the sub-90-second IP blocking pipeline, and client automation builds. Together they show AI product engineering, security depth, and delivery leadership.";
+    if (q.includes("hire") || q.includes("different")) return "Maaz balances AI engineering and cybersecurity engineering: agents, RAG, APIs, and automation on one side; SOC L3, EDR/XDR, SOAR, phishing simulation, detection, response, and compliance on the other. The rare part is that he leads teams and client delivery across both.";
     if (q.includes("contact")) return `Email ${profile.email}, call ${profile.phone}, or use the consultation form for project and service requests.`;
-    return "This service guide can be connected to a serverless route later. For now, it routes recruiters and clients toward Maaz's strongest security automation, SOC, and engineering evidence.";
+    return "This service guide routes recruiters and clients toward Maaz's strongest AI engineering, security automation, SOC, cloud, and client-delivery evidence.";
   }, [assistantQuery]);
 
   const startVoiceNavigation = () => {
@@ -300,16 +294,21 @@ export function PortfolioExperience() {
 
       <section id="top" className="hero">
         <div className="hero-copy">
-          <p className="eyebrow">SOC L3 x security automation x cloud product engineering</p>
+          <p className="eyebrow">AI engineering x cybersecurity x automation leadership</p>
           <h1>{profile.name}</h1>
           <div className="role-line">
+            <div className="role-rotator" aria-live="polite">
+              <span>Operating as</span>
+              <div className="role-window">
+                <div className="role-stack">
+                  {profile.roles.map((role) => <strong key={role}>{role}</strong>)}
+                </div>
+              </div>
+            </div>
             <span>{profile.headline}</span>
-            <motion.strong key={profile.roles[roleIndex]} initial={{ y: 12, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
-              {profile.roles[roleIndex]}
-            </motion.strong>
           </div>
           <p className="hero-text">
-            I build security systems that move from alert to decision: SOC triage, RAG knowledge bases, n8n automations, phishing intelligence, and firewall response pipelines that turn threats into auditable action.
+            I build AI products and security systems in parallel: RAG platforms, agentic workflows, CRM automations, and full-stack AI tools on one side; SOC triage, phishing intelligence, detection engineering, and firewall response pipelines on the other. Together, they turn business workflows and cyber threats into measurable, auditable action.
           </p>
           <div className="hero-actions">
             <a className="primary-btn" href={profile.consultationForm} target="_blank" rel="noreferrer">Get consultation <ArrowRight size={18} /></a>
@@ -346,8 +345,8 @@ export function PortfolioExperience() {
 
       <section className="service-cta" aria-label="Consultation call to action">
         <div>
-          <p className="eyebrow">Cybersecurity automation services</p>
-          <h2>Need a SOC workflow, AI security system, or n8n automation built properly?</h2>
+          <p className="eyebrow">AI engineering and cybersecurity services</p>
+          <h2>Need an AI workflow, SOC automation, RAG system, or client ops engine built properly?</h2>
         </div>
         <a className="primary-btn" href={profile.consultationForm} target="_blank" rel="noreferrer">Book your service <ArrowRight size={18} /></a>
       </section>
@@ -367,8 +366,8 @@ export function PortfolioExperience() {
       <section id="skills" className="section">
         <div className="section-head">
           <div>
-            <p className="eyebrow">Skills intelligence dashboard</p>
-            <h2>Evidence-backed capability map.</h2>
+          <p className="eyebrow">Skills intelligence dashboard</p>
+          <h2>Balanced capability map across AI, security, automation, and leadership.</h2>
           </div>
           <RadarChart />
         </div>
@@ -419,7 +418,7 @@ export function PortfolioExperience() {
         <div className="inline-cta">
           <div>
             <strong>Want a system like these for your team?</strong>
-            <span>Security automation, SOC triage, phishing simulations, RAG knowledge systems, and client workflow engineering.</span>
+            <span>AI agents, RAG knowledge systems, CRM automations, SOC triage, phishing simulations, and security response workflows.</span>
           </div>
           <a className="primary-btn" href={profile.consultationForm} target="_blank" rel="noreferrer">Request a build <ArrowRight size={18} /></a>
         </div>
@@ -431,7 +430,7 @@ export function PortfolioExperience() {
         <div className="section-head">
           <div>
             <p className="eyebrow">Experience timeline</p>
-            <h2>From SOC operations to AI automation leadership.</h2>
+          <h2>AI leadership and SOC leadership, running in parallel.</h2>
           </div>
         </div>
         <div className="timeline">
@@ -450,11 +449,11 @@ export function PortfolioExperience() {
       <section id="systems-lab" className="section lab-section">
         <div>
           <p className="eyebrow">Systems lab</p>
-          <h2>Experimental security systems with production intent.</h2>
-          <p>Current lab themes: secure RAG, analyst copilots, LLM policy reasoning, workflow agents, phishing intelligence, and cloud-deployed services with measurable reliability.</p>
+          <h2>Experimental AI and security systems with production intent.</h2>
+          <p>Current lab themes: secure RAG, analyst copilots, LangGraph agents, EDR/XDR enrichment, SOAR playbooks, phishing simulation engines, LLM policy reasoning, workflow automation, and cloud-deployed services with measurable reliability.</p>
         </div>
         <div className="lab-grid">
-          {["RAG security memory", "Agentic SOC runbooks", "LLM firewall guardrails", "Voice customer agents", "Fine-tuned classifiers", "Compliance automation"].map((item) => (
+          {["RAG security memory", "AI delivery leadership", "SOC team leadership", "EDR/XDR enrichment", "SOAR playbooks", "Phishing simulations", "Awareness automation", "Compliance automation"].map((item) => (
             <span key={item}><Sparkles size={16} />{item}</span>
           ))}
         </div>
@@ -490,8 +489,8 @@ export function PortfolioExperience() {
       <section id="contact" className="section contact-section">
         <div>
           <p className="eyebrow">Contact center</p>
-          <h2>Build sharper cyber defense with Maaz.</h2>
-          <p>Best fit: AI Security Engineer, Security Automation Engineer, SOC L3, GenAI Consultant, AI/ML Engineer, or founder-grade automation builder.</p>
+          <h2>Build sharper AI systems and cyber defense with Maaz.</h2>
+          <p>Best fit: AI Engineer, AI Security Engineer, Security Automation Engineer, SOC L3, GenAI Consultant, Full Stack AI Engineer, or founder-grade automation builder.</p>
           <div className="contact-links">
             <a href={`mailto:${profile.email}`}><Mail size={18} />{profile.email}</a>
             <a href={`tel:${profile.phone.replaceAll(" ", "")}`}><Phone size={18} />{profile.phone}</a>

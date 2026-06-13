@@ -215,7 +215,7 @@ h3 {
 
 .role-line {
   display: grid;
-  gap: 10px;
+  gap: 14px;
   margin-bottom: 20px;
 }
 
@@ -228,9 +228,63 @@ h3 {
   line-height: 1.7;
 }
 
-.role-line strong {
+.role-rotator {
+  --role-row-height: 3.25rem;
+  align-items: start;
+  background:
+    linear-gradient(90deg, rgba(70, 240, 191, 0.12), rgba(107, 183, 255, 0.07)),
+    rgba(13, 18, 22, 0.72);
+  border: 1px solid rgba(70, 240, 191, 0.24);
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  max-width: 680px;
+  min-height: 86px;
+  overflow: hidden;
+  padding: 12px 16px;
+}
+
+.role-rotator span {
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.82rem;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.role-window {
+  height: var(--role-row-height);
+  overflow: hidden;
+  width: 100%;
+}
+
+.role-stack {
+  animation: role-cycle 10s infinite;
+  display: grid;
+  grid-auto-rows: var(--role-row-height);
+  will-change: transform;
+}
+
+.role-stack strong {
+  align-items: center;
   color: var(--amber);
-  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  display: flex;
+  font-family: var(--font-geist-mono), var(--font-inter), monospace;
+  font-size: clamp(1.35rem, 3vw, 2.3rem);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  min-width: 0;
+  overflow: visible;
+  white-space: nowrap;
+}
+
+@keyframes role-cycle {
+  0%, 19.9% { transform: translateY(0); }
+  20%, 39.9% { transform: translateY(calc(var(--role-row-height) * -1)); }
+  40%, 59.9% { transform: translateY(calc(var(--role-row-height) * -2)); }
+  60%, 79.9% { transform: translateY(calc(var(--role-row-height) * -3)); }
+  80%, 99.9% { transform: translateY(calc(var(--role-row-height) * -4)); }
+  100% { transform: translateY(0); }
 }
 
 .hero-text {
@@ -1033,6 +1087,16 @@ h3 {
     letter-spacing: -0.035em;
   }
 
+  .role-rotator {
+    --role-row-height: 2.45rem;
+    min-height: 76px;
+    padding: 11px 13px;
+  }
+
+  .role-stack strong {
+    font-size: 1.38rem;
+  }
+
   .hero-visual {
     aspect-ratio: auto;
     height: 430px;
@@ -1066,5 +1130,9 @@ h3 {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .role-stack {
+    animation: none;
   }
 }
